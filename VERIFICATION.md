@@ -74,3 +74,11 @@ README/package text. Target owner checks remain necessary for the existing motor
 Build and 14 core tests pass; this change was not tested with two actual clients here.
 Remote target binding, replicated carrier state/pickup and ownership transfer remain
 incomplete. Removing admission gates is not verification of those network paths.
+
+## 0.2.3 display name
+
+Changed the BepInEx plugin display name from Bola Gameplay Test to Bola; retained
+its stable plugin/config identifier. Version is now 0.2.3. Build and 14 core tests
+passed, and the upload archive contents were validated. Revalidated the installed
+BepInEx reference: binary hash changed, assembly/file version remains 5.4.23.5;
+compilation and tests against that reference passed. No production files changed.

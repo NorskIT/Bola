@@ -11,13 +11,13 @@ using UnityEngine;
 
 namespace Bola;
 
-[BepInPlugin(Id,"Bola Gameplay Test",Version)]
+[BepInPlugin(Id,"Bola",Version)]
 [BepInDependency(Jotunn.Main.ModGuid,"2.30.2")]
 [BepInDependency("norskit_noranged_plugin",BepInDependency.DependencyFlags.SoftDependency)]
 [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod,VersionStrictness.Patch)]
 public sealed class Plugin : BaseUnityPlugin
 {
-    public const string Id="norskit_bola_plugin", Version="0.2.2", ItemName="NorskIT_Bola";
+    public const string Id="norskit_bola_plugin", Version="0.2.3", ItemName="NorskIT_Bola";
     public static Plugin Instance { get; private set; } = null!;
     public GameObject Visual { get; private set; } = null!;
     public AnimationClip ThrowClip { get; private set; } = null!;

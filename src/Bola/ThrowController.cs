@@ -137,7 +137,7 @@ internal static class BolaControls
         if(__instance!=Player.m_localPlayer || __instance.GetCurrentWeapon()?.m_dropPrefab?.name!=Plugin.ItemName) return;
         var controller=ThrowController.For(__instance);
         bool cancel=block||blockHold;
-        controller.Input(attack||attackHold,cancel,jump||run||dodge);
+        controller.Input(attack||attackHold,cancel,dodge);
         attack=attackHold=secondaryAttack=secondaryAttackHold=false;
         if(controller.ConsumeCancel) block=blockHold=false;
         if(controller.Charging) movedir*=controller.MovementMultiplier;

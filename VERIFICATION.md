@@ -82,3 +82,24 @@ its stable plugin/config identifier. Version is now 0.2.3. Build and 14 core tes
 passed, and the upload archive contents were validated. Revalidated the installed
 BepInEx reference: binary hash changed, assembly/file version remains 5.4.23.5;
 compilation and tests against that reference passed. No production files changed.
+
+## 0.2.4 charge movement and binding HUD
+
+Sprint and jump no longer cancel charging or delayed release; the configured 0.7
+movement multiplier and native stamina costs remain. Dodge and block still cancel.
+A 32px item icon and outlined countdown are added above the visible enemy HUD,
+positioned above active name/alert/star elements after other HUD updates.
+Descent shows an icon only; grounded binding counts up-rounded seconds and normal
+expiry briefly shows 0s for 0.2 seconds. Death/abort hide the marker.
+
+The target owner publishes phase, deadline in network-time milliseconds, owner ID
+and heartbeat in namespaced ZDO fields. Readers hide former-owner or stale reports.
+These fields control presentation only, not binding authority or ownership transfer.
+Headless registration does not create the HUD or load the icon.
+
+Build passed without warnings. All 17 core tests passed, including countdown rounding,
+zero display, descent/abort display and stale/former-owner rejection. Runtime checks
+for charge retention through sprint/jump and real binding HUD timestamps were added
+and compiled, but NOT run because the user is currently playing and declined closing
+Valheim. Visual layout, actual sprint/jump behavior and two-client HUD synchronization
+remain pending game verification. Development and production were not modified.

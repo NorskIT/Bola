@@ -44,6 +44,7 @@ public sealed partial class SmokePlugin
                 Check(BindingService.TryBind(creature,p,_=>recovered++,out var reason),prefab+" accepts binding: "+reason);
                 motor=creature.GetComponent<BindingMotor>();
                 Check(motor.State.Phase==BindingPhase.Bound,prefab+" starts grounded six-second timer");
+                Check(BindingPresentation.Read(creature.GetComponent<ZNetView>().GetZDO(),out var timer)&&timer=="6s",prefab+" publishes six-second HUD countdown");
                 Check(creature.GetHealth()==health,prefab+" zero-damage binding preserves health");
                 Check(creature.GetBaseAI().IsAlerted(),prefab+" zero-damage hit alerts AI");
                 Check(!BindingService.TryBind(creature,p,_=>recovered++,out _),prefab+" rejects second attachment");
@@ -91,6 +92,7 @@ public sealed partial class SmokePlugin
                 motor=creature.GetComponent<BindingMotor>();
                 Check(motor.State.Phase==BindingPhase.Descending,prefab+" starts descending without grounded timer");
                 Check(!motor.State.AwardClaimed,prefab+" descent grants no early XP");
+                Check(BindingPresentation.Read(creature.GetComponent<ZNetView>().GetZDO(),out var timer)&&timer=="",prefab+" publishes icon-only descent");
             })) yield break;
             float wait=Time.time+7;
             while(motor && motor.State.Phase==BindingPhase.Descending && Time.time<wait) yield return new WaitForFixedUpdate();
@@ -101,6 +103,7 @@ public sealed partial class SmokePlugin
                 Check(motor!.State.Deadline-BindingMotor.Now>5.8,prefab+" retains full grounded duration");
                 Check(motor.State.AwardClaimed,prefab+" landing awards once");
                 Check(creature.GetHealth()==health,prefab+" descent adds no fall damage");
+                Check(BindingPresentation.Read(creature.GetComponent<ZNetView>().GetZDO(),out var timer)&&timer=="6s",prefab+" HUD countdown starts after landing");
             })) yield break;
             yield return new WaitForSecondsRealtime(6.2f);
             if(!Try(()=>
@@ -226,6 +229,12 @@ public sealed partial class SmokePlugin
         yield return new WaitForSecondsRealtime(.3f);
         if(!Try(()=>
         {
+            float fraction=controller.Fraction;
+            p.SetControls(Vector3.forward,false,true,false,false,false,false,false,false,true,false);
+            Check(controller.Charging && controller.Fraction>=fraction,"Sprint retains accumulated charge");
+            p.SetControls(Vector3.forward,false,true,false,false,false,false,true,false,true,false);
+            Check(controller.Charging && controller.Fraction>=fraction,"Jump while sprinting retains accumulated charge");
+            Check(Mathf.Abs(controller.MovementMultiplier-.7f)<.001f,"Charging retains configured movement reduction");
             controller.Input(true,true,false);
             Check(!controller.Charging && p.GetInventory().ContainsItem(item),"Block cancels charging without consuming inventory");
             Check(p.GetStamina()<stamina,"Cancelled charge retains holding stamina cost");

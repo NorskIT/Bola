@@ -24,6 +24,8 @@ public sealed class BindingMotor : MonoBehaviour
     private bool applyingLandingDamage;
     private Action<BindingMotor>? released;
     private Action? award;
+    private double nextPresentation, publishedDeadline=-1;
+    private BindingPhase publishedPhase;
     private static readonly AccessTools.FieldRef<Character,Vector3> RootMotion=AccessTools.FieldRefAccess<Character,Vector3>("m_rootMotion");
     private static readonly AccessTools.FieldRef<Character,Vector3> CurrentVelocity=AccessTools.FieldRefAccess<Character,Vector3>("m_currentVel");
     private static readonly AccessTools.FieldRef<Character,Vector3> Push=AccessTools.FieldRefAccess<Character,Vector3>("m_pushForce");
@@ -38,6 +40,7 @@ public sealed class BindingMotor : MonoBehaviour
         target.GetSEMan().AddStatusEffect("SE_BolaBound".GetStableHashCode());
         target.m_flying=false; body.useGravity=true; downSpeed=Mathf.Min(0,body.linearVelocity.y);
         Award();
+        PublishPresentation(true);
     }
     private void OnCollisionStay(Collision collision)
     {
@@ -62,6 +65,7 @@ public sealed class BindingMotor : MonoBehaviour
         bool deep=Target.GetLiquidLevel()-Target.transform.position.y>Mathf.Max(.5f,Target.m_swimDepth-.4f);
         State.Tick(Now,contact,deep,!Target.IsDead()); Award();
         if(State.Phase==BindingPhase.Released) { Finish(); return; }
+        PublishPresentation();
         if(contact && support) anchor=support.TransformPoint(supportLocal);
         else support=null;
         Guard(); RootMotion(Target)=Vector3.zero; CurrentVelocity(Target)=Vector3.zero; Push(Target)=Vector3.zero;
@@ -115,6 +119,7 @@ public sealed class BindingMotor : MonoBehaviour
     private void Finish()
     {
         if(restored) return; restored=true;
+        PublishPresentation(true);
         if(Target)
         {
             Target.m_flying=originalFlying;
@@ -132,6 +137,13 @@ public sealed class BindingMotor : MonoBehaviour
     { if(State!=null&&!restored) { if(Target && Target.IsDead()) State.Tick(Now,false,alive:false); else State.Abort(Now); Finish(); } }
     public static BindingMotor? Active(Character character)
     { var motor=character.GetComponent<BindingMotor>(); return motor&&motor.Enforcing?motor:null; }
+    private void PublishPresentation(bool force=false)
+    {
+        if(!view || !view.IsValid() || !view.IsOwner()) return;
+        if(!force && Now<nextPresentation && publishedPhase==State.Phase && publishedDeadline==State.Deadline) return;
+        publishedPhase=State.Phase; publishedDeadline=State.Deadline; nextPresentation=Now+.5;
+        BindingPresentation.Write(view.GetZDO(),State,Now);
+    }
 }
 
 [HarmonyPatch(typeof(Character),"UpdateMotion")]

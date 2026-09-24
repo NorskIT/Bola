@@ -6,8 +6,10 @@ Catch your prey with a reusable bola. Bind ground creatures or bring flying enem
 
 - Craft a bola with **3 Flint and 2 Leather Scraps**. No workbench required.
 - Hold attack to charge, release to throw, or press block to cancel.
+- Sprint and jump while charging; the charging movement penalty still applies.
 - Holds creatures in place for **6 seconds**, followed by **8 seconds of immunity**. They can still turn and attack.
 - Flying creatures descend before the binding timer starts.
+- A bola icon above the enemy shows the remaining binding time. During descent, only the icon is shown.
 - Deals no damage by default. Pick up your bola and use it again.
 - Bow skill reduces charge time and stamina cost.
 - Players, tamed creatures, bosses and selected large creatures are excluded by default.

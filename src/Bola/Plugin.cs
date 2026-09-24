@@ -17,7 +17,7 @@ namespace Bola;
 [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod,VersionStrictness.Patch)]
 public sealed class Plugin : BaseUnityPlugin
 {
-    public const string Id="norskit_bola_plugin", Version="0.2.3", ItemName="NorskIT_Bola";
+    public const string Id="norskit_bola_plugin", Version="0.2.4", ItemName="NorskIT_Bola";
     public static Plugin Instance { get; private set; } = null!;
     public GameObject Visual { get; private set; } = null!;
     public AnimationClip ThrowClip { get; private set; } = null!;

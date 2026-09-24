@@ -7,7 +7,8 @@ if ($LASTEXITCODE -ne 0) { throw 'No Ranged compilation failed' }
 & dotnet test "$root/../no-ranged-public/tests/NoRanged.Tests/NoRanged.Tests.csproj" -c Release --nologo
 if ($LASTEXITCODE -ne 0) { throw 'No Ranged regression failed' }
 $stage = Join-Path $root ('artifacts/packages-' + [Guid]::NewGuid().ToString('N'))
-$bola = Join-Path $stage 'Bola-0.2.1-LOCAL-TEST'
+[xml]$props = Get-Content "$root/Directory.Build.props"
+$bola = Join-Path $stage ("Bola-" + $props.Project.PropertyGroup.Version + "-LOCAL-TEST")
 $ranged = Join-Path $stage 'No_Ranged-1.2.2-TEST'
 New-Item -ItemType Directory -Force "$bola/plugins/Bola", "$ranged/plugins/NoRanged" | Out-Null
 Copy-Item -LiteralPath "$root/src/Bola/bin/Release/net481/Bola.dll", "$root/src/Bola.Core/bin/Release/net481/Bola.Core.dll", "$root/artifacts/bundle/bola.prototype.assets" -Destination "$bola/plugins/Bola"

@@ -1,0 +1,13 @@
+**/bin/
+**/obj/
+artifacts/
+assets/prepared/
+unity/Library/
+unity/Logs/
+unity/Temp/
+unity/UserSettings/
+unity/Assets/Generated/
+Environment.local.props
+# Original model/animation files stay local pending redistribution clearance.
+assets/source/*.glb
+assets/source/*.fbx

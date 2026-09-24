@@ -1,0 +1,22 @@
+[
+    {
+        "Path":  "C:/Program Files (x86)/Steam/steamapps/common/Valheim/valheim_Data/Managed/assembly_valheim.dll",
+        "Version":  "0.0.0.0",
+        "Sha256":  "59F53FB55D99D22A33E8ED094EEC8D21E9F133543BCE92BC3D80DCE44033ADB1"
+    },
+    {
+        "Path":  "C:\\Users\\Magnu\\AppData\\Roaming\\com.kesomannen.gale\\valheim\\profiles\\Prod-v1\\BepInEx/core/BepInEx.dll",
+        "Version":  "5.4.23.5",
+        "Sha256":  "F09821B2A7B990C6F50C5EF23229635303CE675374B70EDC6F5A9B960CB818E3"
+    },
+    {
+        "Path":  "C:\\Users\\Magnu\\AppData\\Roaming\\com.kesomannen.gale\\valheim\\profiles\\Prod-v1\\BepInEx/core/0Harmony.dll",
+        "Version":  "2.9.0.0",
+        "Sha256":  "1A21CC03424FC82C3DD1346905D16494536B9595AE4162228D99FB7C285C1031"
+    },
+    {
+        "Path":  "C:\\Users\\Magnu\\AppData\\Roaming\\com.kesomannen.gale\\valheim\\profiles\\Prod-v1\\BepInEx/plugins/ValheimModding-Jotunn/Jotunn.dll",
+        "Version":  "2.30.2.0",
+        "Sha256":  "9509221046842A70F94B98BAB4CB41005DEE026823A7A79345829ED46A30F796"
+    }
+]

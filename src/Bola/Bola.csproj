@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="../../Environment.props" />
+  <ItemGroup>
+    <EmbeddedResource Include="Assets/item_icon.png" LogicalName="Bola.item_icon.png" />
+    <ProjectReference Include="../Bola.Core/Bola.Core.csproj" />
+    <Reference Include="BepInEx" HintPath="$(BepDir)/core/BepInEx.dll" Private="false" />
+    <Reference Include="0Harmony" HintPath="$(BepDir)/core/0Harmony.dll" Private="false" />
+    <Reference Include="Jotunn" HintPath="$(JotunnPath)" Private="false" />
+    <Reference Include="$(GameDir)/valheim_Data/Managed/UnityEngine*.dll" Private="false" />
+    <Reference Include="assembly_valheim" HintPath="$(GameDir)/valheim_Data/Managed/assembly_valheim.dll" Private="false" />
+    <Reference Include="assembly_utils" HintPath="$(GameDir)/valheim_Data/Managed/assembly_utils.dll" Private="false" />
+    <Reference Include="assembly_guiutils" HintPath="$(GameDir)/valheim_Data/Managed/assembly_guiutils.dll" Private="false" />
+    <Reference Include="gui_framework" HintPath="$(GameDir)/valheim_Data/Managed/gui_framework.dll" Private="false" />
+    <Reference Include="Splatform" HintPath="$(GameDir)/valheim_Data/Managed/Splatform.dll" Private="false" />
+  </ItemGroup>
+</Project>

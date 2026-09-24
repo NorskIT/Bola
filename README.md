@@ -14,7 +14,7 @@ Catch your prey with a reusable bola. Bind ground creatures or bring flying enem
 
 ## Current test build
 
-Single-player only. Multiplayer is not enabled yet, and animations are still being improved.
+Animations are still being improved.
 
 Requires **BepInExPack Valheim 5.4.2350** and **Jotunn 2.30.2** or newer.
 Settings are in `BepInEx/config/norskit_bola_plugin.cfg` after the first launch.

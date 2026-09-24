@@ -44,11 +44,6 @@ public sealed class BolaCarrier : MonoBehaviour
                 body.AddForce(Vector3.up*(Mathf.Clamp((liquid-transform.position.y)*20,0,20)+9.81f),ForceMode.Acceleration);
             return;
         }
-        if(!BindingService.IsLocalAuthority)
-        {
-            if(target && BindingMotor.Active(target!)) BindingMotor.Active(target!)!.State.Abort(BindingMotor.Now);
-            Recover(lastSafe); return;
-        }
         if(Phase==CarrierPhase.Attached)
         {
             if(!target) { Recover(lastSafe); return; }

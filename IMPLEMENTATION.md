@@ -1,4 +1,9 @@
-﻿# Implementation ledger
+> Update 0.2.2: The explicit solo-only gates were removed at the user's request
+> following their multiplayer test. This does not implement the planned coordinator:
+> binding still requires local ownership of the target. Remote carrier phase/pickup
+> synchronization and ownership-transfer durability remain unverified/incomplete.
+> Older descriptions below refer to earlier builds.
+# Implementation ledger
 
 The user explicitly deferred animation quality as a blocking gate on 2026-09-24,
 then requested local testing first because two actual clients are unavailable.

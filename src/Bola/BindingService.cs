@@ -10,13 +10,10 @@ public static class BindingService
 {
     private static readonly Dictionary<ZDOID,double> immunity=new();
     private static readonly Dictionary<string,CreatureClass> classifications=new(StringComparer.Ordinal);
-    // Local authoritative prototype only. Multiplayer is explicitly gated until its coordinator is implemented.
-    public static bool IsLocalAuthority => ZNet.instance && ZNet.instance.IsServer() && ZNet.instance.GetPeers().Count==0;
     public static bool TryBind(Character target,Player attacker,Action<Vector3> recover,out string reason)
     {
         reason="";
         var balance=Plugin.Instance.Settings.Current;
-        if(!IsLocalAuthority) { reason="Multiplayer coordinator is not enabled in this test build."; return false; }
         if(!target || target.IsDead() || !target.GetBaseAI() || target.IsPlayer()) { reason="Unsupported target"; return false; }
         var view=target.GetComponent<ZNetView>();
         if(target.GetType().Assembly!=typeof(Character).Assembly) { reason="Custom creature motor needs a compatibility adapter"; return false; }

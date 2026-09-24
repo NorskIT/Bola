@@ -65,3 +65,12 @@ Ground/flying binding, death/timeout and pickup regression checks also passed.
 Build succeeded with no warnings; 14 core tests passed. Installed DLL/core 0.2.1
 into Development with verified hashes and a backup under artifacts/development-collision-fix-*.
 No production profile or server changed.
+
+## 0.2.2 multiplayer restriction removal
+
+User reports successful multiplayer testing. Removed the server-with-zero-peers check
+from charging and binding, and removed the peer-join carrier abort. Removed solo-only
+README/package text. Target owner checks remain necessary for the existing motor.
+Build and 14 core tests pass; this change was not tested with two actual clients here.
+Remote target binding, replicated carrier state/pickup and ownership transfer remain
+incomplete. Removing admission gates is not verification of those network paths.

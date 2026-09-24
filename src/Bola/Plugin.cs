@@ -17,7 +17,7 @@ namespace Bola;
 [NetworkCompatibility(CompatibilityLevel.EveryoneMustHaveMod,VersionStrictness.Patch)]
 public sealed class Plugin : BaseUnityPlugin
 {
-    public const string Id="norskit_bola_plugin", Version="0.2.1", ItemName="NorskIT_Bola";
+    public const string Id="norskit_bola_plugin", Version="0.2.2", ItemName="NorskIT_Bola";
     public static Plugin Instance { get; private set; } = null!;
     public GameObject Visual { get; private set; } = null!;
     public AnimationClip ThrowClip { get; private set; } = null!;
@@ -28,7 +28,6 @@ public sealed class Plugin : BaseUnityPlugin
     private void Awake()
     {
         Instance=this;
-        Logger.LogWarning("Local gameplay test build. Multiplayer throws remain disabled pending the server coordinator.");
         if(!NoRangedBridge.AllowsNewAction(out var reason)) Logger.LogWarning(reason);
         Settings=new Settings(Config,message=>Logger.LogWarning(message));
         Text.Register();
@@ -101,7 +100,7 @@ public sealed class Plugin : BaseUnityPlugin
         item.ItemPrefab.AddComponent<BolaCarrier>();
         ItemManager.Instance.AddItem(item);
         PrefabManager.OnVanillaPrefabsAvailable-=Register;
-        Logger.LogInfo("Bola local gameplay test registered. Remote multiplayer remains disabled pending its coordinator.");
+        Logger.LogInfo("Bola registered.");
     }
     private void OnDestroy()
     { BindingService.Reset(); PrefabManager.OnVanillaPrefabsAvailable-=Register; harmony?.UnpatchSelf(); if(bundle) bundle.Unload(false); }

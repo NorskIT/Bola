@@ -1,4 +1,9 @@
-﻿# Bola 0.2.1 local gameplay test
+> Update 0.2.2: The explicit solo-only gates were removed at the user's request
+> following their multiplayer test. This does not implement the planned coordinator:
+> binding still requires local ownership of the target. Remote carrier phase/pickup
+> synchronization and ownership-transfer durability remain unverified/incomplete.
+> Older descriptions below refer to earlier builds.
+# Bola 0.2.1 local gameplay test
 
 Playable local prototype for Valheim 1.0.15. Multiplayer is disabled pending the
 server coordinator and durable inventory transactions. This is not a release candidate.

@@ -25,7 +25,7 @@ public sealed class ThrowController : MonoBehaviour
     private static bool HasInputFocus() => Application.isFocused;
     private bool Valid()
     {
-        return player==Player.m_localPlayer && Plugin.Instance.Settings.Current.Enabled && BindingService.IsLocalAuthority && NoRangedBridge.AllowsNewAction(out _)
+        return player==Player.m_localPlayer && Plugin.Instance.Settings.Current.Enabled && NoRangedBridge.AllowsNewAction(out _)
             && !player.IsDead() && !player.IsTeleporting() && !player.IsSwimming() && !player.IsRiding() && !player.IsAttached()
             && !player.IsStaggering() && !player.InDodge() && HasInputFocus()
             && !InventoryGui.IsVisible() && !Menu.IsVisible() && !Console.IsVisible() && !TextInput.IsVisible()
